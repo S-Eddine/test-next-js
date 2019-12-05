@@ -1,45 +1,28 @@
 import Layout from '../components/MyLayout';
 import Link from 'next/link';
 import fetch from 'isomorphic-unfetch';
+import head from 'next/head';
 
 const Index = props => (
-    <Layout>
-        <h1>Batman TV Shows</h1>
-        <ul>
-            {props.shows.map(show => {
-                return (
-                <li key={show.id}>
-                    <Link href="/p/[id]" as={`/p/${show.id}`}>
-                        <a>{show.name}</a>
-                    </Link>
-                </li>
-            )})}
-        </ul>
-        <style jsx>{`
-        h1,
-        a {
-          font-family: 'Arial';
-        }
-
-        ul {
-          padding: 0;
-        }
-
-        li {
-          list-style: none;
-          margin: 5px 0;
-        }
-
-        a {
-          text-decoration: none;
-          color: blue;
-        }
-
-        a:hover {
-          opacity: 0.6;
-        }
-      `}</style>
-    </Layout>
+    <>
+        <head>
+            <title>Next JS With Bootstrap</title>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossOrigin="anonymous"></link>
+        </head>
+        <Layout>
+            <h1>Batman TV Shows</h1>
+            <ul>
+                {props.shows.map(show => {
+                    return (
+                    <li key={show.id}>
+                        <Link href="/p/[id]" as={`/p/${show.id}`}>
+                            <a>{show.name}</a>
+                        </Link>
+                    </li>
+                )})}
+            </ul>
+        </Layout>
+    </>
 );
 
 Index.getInitialProps = async function() {
